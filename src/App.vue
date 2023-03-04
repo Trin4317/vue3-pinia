@@ -1,5 +1,6 @@
 <script setup>
 import { useTaskStore } from './stores/TaskStore'
+import TaskDetails from './components/TaskDetails.vue'
 
 const taskStore = useTaskStore()
 </script>
@@ -14,7 +15,7 @@ const taskStore = useTaskStore()
 
     <div class="task-list">
       <div v-for="task in taskStore.tasks" :key="task.id">
-        <p>{{ task.title }}</p>
+        <TaskDetails :task="task" />
       </div>
     </div>
   </main>
