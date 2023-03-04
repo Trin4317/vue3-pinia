@@ -2,6 +2,7 @@
 import { useTaskStore } from './stores/TaskStore'
 import TaskDetails from './components/TaskDetails.vue'
 import { ref } from 'vue'
+import TaskForm from './components/TaskForm.vue';
 
 const taskStore = useTaskStore()
 
@@ -15,6 +16,10 @@ const toggle = ref('all')
       <h1>Pinia Tasks</h1>
       <h4>by {{ taskStore.name }}</h4>
     </header>
+
+    <div class="new-task-form">
+      <TaskForm />
+    </div>
 
     <nav class="filter">
       <button @click="toggle = 'all'">All Tasks</button>
