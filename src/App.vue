@@ -22,14 +22,14 @@ const toggle = ref('all')
     </nav>
 
     <div class="task-list" v-if="toggle === 'all'">
-      <p>All Tasks</p>
+      <p>You have {{ taskStore.totalCount }} tasks left to do</p>
       <div v-for="task in taskStore.tasks" :key="task.id">
         <TaskDetails :task="task" />
       </div>
     </div>
 
     <div class="task-list" v-if="toggle === 'fav'">
-      <p>Favorite Tasks</p>
+      <p>You have {{ taskStore.favCount }} favorited tasks</p>
       <div v-for="task in taskStore.favs" :key="task.id">
         <TaskDetails :task="task" />
       </div>
