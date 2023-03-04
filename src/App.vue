@@ -3,7 +3,7 @@ import { useTaskStore } from './stores/TaskStore'
 import TaskDetails from './components/TaskDetails.vue'
 import { ref } from 'vue'
 import TaskForm from './components/TaskForm.vue'
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia'
 
 const taskStore = useTaskStore()
 

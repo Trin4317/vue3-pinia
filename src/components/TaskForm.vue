@@ -9,9 +9,9 @@ const newTask = ref('')
 const handleSubmit = () => {
   if (newTask.value.length > 0) {
     taskStore.addTask({
+      id: taskStore.totalCount + 1,
       title: newTask.value,
-      isFav: false,
-      id: taskStore.totalCount + 1
+      isFav: false
     })
 
     newTask.value = ''
