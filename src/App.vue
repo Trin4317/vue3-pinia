@@ -3,8 +3,11 @@ import { useTaskStore } from './stores/TaskStore'
 import TaskDetails from './components/TaskDetails.vue'
 import { ref } from 'vue'
 import TaskForm from './components/TaskForm.vue'
+import { storeToRefs } from 'pinia';
 
 const taskStore = useTaskStore()
+
+const { tasks, loading, favs, totalCount, favCount } = storeToRefs(taskStore)
 
 // fetch tasks
 taskStore.getTasks()
@@ -17,7 +20,7 @@ const toggle = ref('all')
     <header>
       <img src="./assets/logo.svg" alt="pinia logo" />
       <h1>Pinia Tasks</h1>
-      <h4>by {{ taskStore.name }}</h4>
+      <h4>by {{ name }}</h4>
     </header>
 
     <div class="new-task-form">
@@ -29,18 +32,18 @@ const toggle = ref('all')
       <button @click="toggle = 'fav'">Favorites Tasks</button>
     </nav>
 
-    <div class="loading" v-if="taskStore.loading">Loading tasks...</div>
+    <div class="loading" v-if="loading">Loading tasks...</div>
 
     <div class="task-list" v-if="toggle === 'all'">
-      <p>You have {{ taskStore.totalCount }} tasks left to do</p>
-      <div v-for="task in taskStore.tasks" :key="task.id">
+      <p>You have {{ totalCount }} tasks left to do</p>
+      <div v-for="task in tasks" :key="task.id">
         <TaskDetails :task="task" />
       </div>
     </div>
 
     <div class="task-list" v-if="toggle === 'fav'">
-      <p>You have {{ taskStore.favCount }} favorited tasks</p>
-      <div v-for="task in taskStore.favs" :key="task.id">
+      <p>You have {{ favCount }} favorited tasks</p>
+      <div v-for="task in favs" :key="task.id">
         <TaskDetails :task="task" />
       </div>
     </div>
