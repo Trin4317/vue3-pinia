@@ -10,5 +10,11 @@ export const useTaskStore = defineStore('taskStore', {
       { id: 3, title: 'Finish Homework', isFav: false }
     ],
     name: 'Yoshi'
-  })
+  }),
+  // similar to computed()
+  getters: {
+    favs() {
+      return this.tasks.filter((t) => t.isFav)
+    }
+  }
 })
