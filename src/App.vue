@@ -1,8 +1,11 @@
 <script setup>
 import { useTaskStore } from './stores/TaskStore'
 import TaskDetails from './components/TaskDetails.vue'
+import { ref } from 'vue'
 
 const taskStore = useTaskStore()
+
+const toggle = ref('all')
 </script>
 
 <template>
@@ -13,8 +16,21 @@ const taskStore = useTaskStore()
       <h4>by {{ taskStore.name }}</h4>
     </header>
 
-    <div class="task-list">
+    <nav class="filter">
+      <button @click="toggle = 'all'">All Tasks</button>
+      <button @click="toggle = 'fav'">Favorites Tasks</button>
+    </nav>
+
+    <div class="task-list" v-if="toggle === 'all'">
+      <p>All Tasks</p>
       <div v-for="task in taskStore.tasks" :key="task.id">
+        <TaskDetails :task="task" />
+      </div>
+    </div>
+
+    <div class="task-list" v-if="toggle === 'fav'">
+      <p>Favorite Tasks</p>
+      <div v-for="task in taskStore.favs" :key="task.id">
         <TaskDetails :task="task" />
       </div>
     </div>
