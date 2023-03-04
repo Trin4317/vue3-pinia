@@ -6,6 +6,9 @@ import TaskForm from './components/TaskForm.vue'
 
 const taskStore = useTaskStore()
 
+// fetch tasks
+taskStore.getTasks()
+
 const toggle = ref('all')
 </script>
 
@@ -25,6 +28,8 @@ const toggle = ref('all')
       <button @click="toggle = 'all'">All Tasks</button>
       <button @click="toggle = 'fav'">Favorites Tasks</button>
     </nav>
+
+    <div class="loading" v-if="taskStore.loading">Loading tasks...</div>
 
     <div class="task-list" v-if="toggle === 'all'">
       <p>You have {{ taskStore.totalCount }} tasks left to do</p>

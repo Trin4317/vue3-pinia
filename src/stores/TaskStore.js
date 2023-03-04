@@ -4,11 +4,8 @@ import { defineStore } from 'pinia'
 export const useTaskStore = defineStore('taskStore', {
   // similar to data()
   state: () => ({
-    tasks: [
-      { id: 1, title: 'Buy Groceries', isFav: false },
-      { id: 2, title: 'Play Guitar', isFav: true },
-      { id: 3, title: 'Finish Homework', isFav: false }
-    ],
+    tasks: [],
+    loading: false,
     name: 'Yoshi'
   }),
   // similar to computed()
@@ -28,6 +25,14 @@ export const useTaskStore = defineStore('taskStore', {
   },
   // similar to methods()
   actions: {
+    async getTasks() {
+      this.loading = true
+      const res = await fetch('http://localhost:3000/tasks')
+      const data = await res.json()
+
+      this.tasks = data
+      this.loading = false
+    },
     addTask(task) {
       this.tasks.push(task)
     },
