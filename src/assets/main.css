@@ -59,6 +59,9 @@ header h1 {
   cursor: pointer;
   color: #bbb;
 }
+.task i.active {
+  color: #ff005d;
+}
 
 /* filter nav */
 .filter {
