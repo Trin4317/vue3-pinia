@@ -44,5 +44,9 @@ const toggle = ref('all')
         <TaskDetails :task="task" />
       </div>
     </div>
+
+    <div class="filter">
+      <button @click="taskStore.$reset">Reset State</button>
+    </div>
   </main>
 </template>
