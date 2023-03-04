@@ -30,6 +30,15 @@ export const useTaskStore = defineStore('taskStore', {
   actions: {
     addTask(task) {
       this.tasks.push(task)
+    },
+    deleteTask(taskId) {
+      this.tasks = this.tasks.filter((t) => {
+        return t.id !== taskId
+      })
+    },
+    toggleFavTask(taskId) {
+      const task = this.tasks.find((t) => t.id === taskId)
+      task.isFav = !task.isFav
     }
   }
 })
