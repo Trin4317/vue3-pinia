@@ -15,6 +15,15 @@ export const useTaskStore = defineStore('taskStore', {
   getters: {
     favs() {
       return this.tasks.filter((t) => t.isFav)
+    },
+    favCount() {
+      return this.tasks.reduce((accumulator, currentTask) => {
+        return currentTask.isFav ? accumulator + 1 : accumulator
+      }, 0)
+    },
+    // using arrow function
+    totalCount: (state)  => {
+      return state.tasks.length
     }
   }
 })
