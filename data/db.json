@@ -1,0 +1,7 @@
+{
+    "tasks": [
+        { "id": 1, "title": "Buy Groceries", "isFav": false },
+        { "id": 2, "title": "Play Guitar", "isFav": true },
+        { "id": 3, "title": "Finish Homework", "isFav": false }
+    ]
+}
